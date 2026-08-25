@@ -63,6 +63,8 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "auth_app.User"
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": (
