@@ -1,0 +1,17 @@
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = [".venv", "*/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.coverage.run]
+branch = true
+omit = ["*/migrations/*", "manage.py", "core/asgi.py", "core/wsgi.py"]
+source = ["auth_app", "profile_app", "offers_app", "orders_app", "reviews_app"]
+
+[tool.coverage.report]
+fail_under = 95
+show_missing = true
+skip_covered = true
