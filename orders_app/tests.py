@@ -61,6 +61,8 @@ class OrderApiTests(APITestCase):
         self.assertEqual(len(customer_response.data), 1)
         self.assertEqual(len(business_response.data), 2)
         self.assertIn(unrelated.pk, [item["id"] for item in business_response.data])
+        self.assertTrue(customer_response.data[0]["created_at"].endswith("Z"))
+        self.assertTrue(customer_response.data[0]["updated_at"].endswith("Z"))
 
     def test_customer_can_create_order_from_offer_detail(self):
         self.client.force_authenticate(self.other_customer)

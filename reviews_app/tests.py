@@ -39,6 +39,8 @@ class ReviewApiTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["reviewer"], self.customer.pk)
+        self.assertTrue(response.data[0]["created_at"].endswith("Z"))
+        self.assertTrue(response.data[0]["updated_at"].endswith("Z"))
 
     def test_review_list_requires_authentication(self):
         response = self.client.get(reverse("reviews_api:list-create"))

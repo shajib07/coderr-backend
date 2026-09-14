@@ -44,6 +44,7 @@ class ProfileApiTests(APITestCase):
         self.assertEqual(response.data["user"], self.customer.pk)
         self.assertEqual(response.data["first_name"], "")
         self.assertEqual(response.data["working_hours"], "")
+        self.assertTrue(response.data["created_at"].endswith("Z"))
 
     def test_owner_can_update_profile_and_user_fields(self):
         self.client.force_authenticate(self.customer)
@@ -107,3 +108,4 @@ class ProfileApiTests(APITestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["type"], User.UserType.CUSTOMER)
         self.assertIn("uploaded_at", response.data[0])
+        self.assertTrue(response.data[0]["uploaded_at"].endswith("Z"))

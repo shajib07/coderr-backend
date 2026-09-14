@@ -67,6 +67,8 @@ class OfferApiTests(APITestCase):
         self.assertEqual(offer["min_price"], Decimal("100.00"))
         self.assertEqual(offer["min_delivery_time"], 5)
         self.assertEqual(offer["user_details"]["username"], "business")
+        self.assertTrue(offer["created_at"].endswith("Z"))
+        self.assertTrue(offer["updated_at"].endswith("Z"))
 
     def test_offer_list_supports_documented_filters(self):
         self.create_offer(self.other_business, "Photography")
